@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#wrap{
+	width:1200px;
+	margin:auto;
+}
+
+.contents{
+	height:600px;
+}
+
+.contents > .join-box{
+	width:400px;
+}
+
+.login{
+	width:50px;
+}
+
+footer{
+	height:60px;
+}
