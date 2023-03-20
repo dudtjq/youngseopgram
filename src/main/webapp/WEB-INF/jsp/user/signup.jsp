@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,22 +29,18 @@
 				<div class="text-center">가입하세요.</div>
 				<div class="d-flex justify-content-center">
 					<input type="text" placeholder="아이디" class="form-control mt-4 col-7" id="loginIdInput">
-					<button type="button" class="bg-info text-white form-control col-3 btn-sm" id="duplicationBtn">중복확인</button>
+					<button type="button" class="bg-info text-white form-control col-3 " id="duplicationBtn">중복확인</button> <br>
+				</div>
+				<div class="d-flex ">
+					<div class="text-danger small d-none justify-content-start pl-4" id="idText1">중복된 ID 입니다.</div>
+					<div class="text-success small d-none justify-content-start pl-4" id="idText2">사용 가능한 ID 입니다.</div>
 				</div>
 				<div class="d-flex justify-content-center">
-					<input type="text" placeholder="패스워드" class="form-control mt-4 col-10" id="passwordInput">
+					<input type="password" placeholder="패스워드" class="form-control mt-4 col-10" id="passwordInput">
 				</div>
-				<div class="d-flex justify-content-center">
-					<input type="text" placeholder="패스워드 확인" class="form-control mt-4 col-10" id="passwordCheckInput">
-				</div>
-				<div class="d-flex justify-content-center">
-					<input type="text" placeholder="이름" class="form-control mt-4 col-10" id="nameInput">
-				</div>
-				<div class="d-flex justify-content-center">
-					<input type="text" placeholder="이메일" class="form-control mt-4 col-10" id="emailInput">
-				</div>	
+		
 				<div class="d-flex justify-content-center pt-3">
-					<button type="button" class="bg-info text-white form-control col-10" id="joinBtn">회원가입</button>
+					<button type="button" class="bg-info text-white form-control col-10" id="signupBtn">회원가입</button>
 				</div>
 				
 				
@@ -59,11 +58,72 @@
 		
 	$(document).ready(function(){
 		
-		$("#duplicationBtn").on("click", function(){
+		// 처음엔 중복체크가 진행이 안된 상태
+		var isChecked = false;
+		// 중복이 맞으면 추가가 되지 못하게 true로 셋팅!
+		var isDuplicate = true;
+		
+		
+		$("#loginIdInput").on("input", function(){
 			
+			// 초기화면 처럼 셋팅 진행
+			isChecked = false;
+			isDuplicateId = true;
+			// 중복확인을 진행 안했으니 문구가 안보이게 진행 한다.
+			$("#idText1").addClass("d-none");
+			$("#idText2").addClass("d-none");
 		});
 		
-		$("#joinBtn").on("click", function(){
+		
+		$("#duplicationBtn").on("click", function(){
+			
+			let loginId = $("#loginIdInput").val();
+
+			if(loginId == ""){
+				alert("아이디를 입력하세요.");
+				return;
+			}
+			
+			$.ajax({
+				type:"get"
+				, url:"/user/duplicate_id"
+				, data:{"loginId":loginId}
+				, success:function(data){
+					
+					// 중복체크 여부 저장 성공과 조건문 사이인 중가로 에다가 넣어둔다!
+					isChecked = true;
+					
+					if(data.is_duplicate){	
+						
+						isDuplicateId = data.is_duplicate;
+						$("#idText1").removeClass("d-none");
+						$("#idText2").addClass("d-none");
+						
+						isDuplicateId = true;
+						
+						alert("중복된 ID 입니다.");
+					}else{
+						
+						$("#idText2").removeClass("d-none");
+						$("#idText1").addClass("d-none");
+						
+						isDuplicateId = false;
+						
+						alert("사용가능한 ID 입니다.");
+					}
+				}
+				, error:function(){
+					alert("중복확인 에러");
+				}
+				
+				
+			});
+	
+		});
+			
+		
+		$("#signupBtn").on("click", function(){
+			
 			let loginId = $("#loginIdInput").val();
 			let password = $("#passwordInput").val();
 			let passwordCheck = $("#passwordCheckInput").val();
@@ -72,22 +132,37 @@
 			
 			if(loginId == ""){
 				alert("아이디를 입력해주세요.");
+				return;
+			}
+			
+			if(!isChecked){
+				alert("아이디 중복체크를 진행 해 주세요");
+				return;
+			}
+			
+			if(isDuplicateId){
+				alert("아이디 중복되었습니다.");
+				return;
 			}
 			
 			if(password == ""){
 				alert("비밀번호를 입력해주세요.");
+				return;
 			}
 			
 			if(password != passwordCheck){
 				alert("비밀번호가 일치 하지 않습니다.");
+				return;
 			}
 			
 			if(name == ""){
 				alert("이름을 입력해주세요.");
+				return;
 			}
 			
 			if(email == ""){
 				alert("이메일을 입력해주세요.");
+				return;
 			}
 			
 			
