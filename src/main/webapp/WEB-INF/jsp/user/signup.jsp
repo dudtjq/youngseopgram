@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>youngseopgram 회원 가입 화면</title>
+<title>youngseopgram 회원가입</title>
 
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -22,34 +22,44 @@
 	
 	<div id="wrap">
 		
-		<section class="contents d-flex justify-content-center pt-5">
-			<div class="join-box border">
-				<h1 class="text-center pt-2">youngseopgram</h1>
-				<div class="text-center pt-3">친구들의 사진과 동영상을 보려면</div>
-				<div class="text-center">가입하세요.</div>
-				<div class="d-flex justify-content-center">
-					<input type="text" placeholder="아이디" class="form-control mt-4 col-7" id="loginIdInput">
-					<button type="button" class="bg-info text-white form-control col-3 " id="duplicationBtn">중복확인</button> <br>
-				</div>
-				<div class="d-flex ">
-					<div class="text-danger small d-none justify-content-start pl-4" id="idText1">중복된 ID 입니다.</div>
-					<div class="text-success small d-none justify-content-start pl-4" id="idText2">사용 가능한 ID 입니다.</div>
-				</div>
-				<div class="d-flex justify-content-center">
-					<input type="password" placeholder="패스워드" class="form-control mt-4 col-10" id="passwordInput">
-				</div>
-		
-				<div class="d-flex justify-content-center pt-3">
-					<button type="button" class="bg-info text-white form-control col-10" id="signupBtn">회원가입</button>
-				</div>
+		<section class="content d-flex justify-content-center my-5">
+			<div>
+				<div class="login-box d-flex justify-content-center align-items-start bg-white  border rounded">
+					<div class="w-100 p-5">
+						<h2 class="text-center">youngseopgram</h2>
+						<br>
+						<div class="text-center">
+							<b class="text-secondary">친구들의 사진과 동영상을 보려면<br> 가입하세요.</b>
+						</div>
+						
+						<div class="d-flex  mt-3">
+							<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
+							<button type="button" class="btn btn-info btn-sm ml-2" id="duplicationBtn">중복확인</button>
+						</div>
+						
+						<div class="small text-success d-none" id="idText1">사용가능한 아이디 입니다</div>
+						<div class="small text-danger d-none" id="idText2">중복된 아이디 입니다</div>
+					
+						<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
+						<input type="password" id="passwordCheckInput" class="form-control mt-3" placeholder="패스워드 확인">
+						
+						<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
+						<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
+						
+						<button type="button" id="signUpBtn" class="btn btn-info btn-block mt-3">회원가입</button>
 				
-				
+					</div>
+					
+				</div>
+				<div class="mt-4 p-3 d-flex justify-content-center align-items-start bg-white  border rounded">
+					계정이 있으신가요? <a href="/user/signin/view">로그인</a>
+				</div>
 			</div>
-			
 		</section>
-		<footer> 
-		<div class="text-center pt-3">Copyright 2023. youngseopgram All Rights Reserved.</div>
-		</footer>
+		
+		<hr>
+		
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
 	
 	</div>
@@ -96,16 +106,16 @@
 					if(data.is_duplicate){	
 						
 						isDuplicateId = data.is_duplicate;
-						$("#idText1").removeClass("d-none");
-						$("#idText2").addClass("d-none");
+						$("#idText2").removeClass("d-none");
+						$("#idText1").addClass("d-none");
 						
 						isDuplicateId = true;
 						
 						alert("중복된 ID 입니다.");
 					}else{
 						
-						$("#idText2").removeClass("d-none");
-						$("#idText1").addClass("d-none");
+						$("#idText1").removeClass("d-none");
+						$("#idText2").addClass("d-none");
 						
 						isDuplicateId = false;
 						
@@ -122,7 +132,7 @@
 		});
 			
 		
-		$("#signupBtn").on("click", function(){
+		$("#signUpBtn").on("click", function(){
 			
 			let loginId = $("#loginIdInput").val();
 			let password = $("#passwordInput").val();

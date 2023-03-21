@@ -2,14 +2,41 @@
 
 #wrap{
 	width:1200px;
+	height:800px;
 	margin:auto;
 }
 
-.contents{
+header{
+	width:1200px;
+	height:100px;
+	margin:auto;
+}
+
+section{
+	height:700px;
+}
+
+.upload{
+	width:400px;
+	height:150px;
+	margin:auto;
+}
+
+.logo{
+	width:600px;
+	height:700px;
+	margin:auto;
+}
+.login-box1{
+	width:600px;
+	height:700px;
+}
+
+.content{
 	height:600px;
 }
 
-.contents > .join-box{
+.content > .login-box{
 	width:400px;
 }
 
