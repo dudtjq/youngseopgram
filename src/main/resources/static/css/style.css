@@ -16,6 +16,26 @@ section{
 	height:700px;
 }
 
+.timelineBox{
+	width:500px;
+}
+
+.uploadIcon{
+	font-size:26px;
+}
+
+.list1{
+	width:500px;
+	height:40px;
+	background-color:#dddddd;
+}
+
+.list2{
+	width:400px;
+	height:30px;
+	background-color:#dddddd;
+}
+
 .upload{
 	width:400px;
 	height:150px;

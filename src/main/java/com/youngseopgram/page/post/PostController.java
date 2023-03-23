@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/post")
 public class PostController {
 
-	@GetMapping("/timeline/view")
+	@GetMapping("/create/view")
 	public String postList() {
 		
 		return "post/timeline";
