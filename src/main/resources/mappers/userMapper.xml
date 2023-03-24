@@ -60,5 +60,22 @@
   	
   	</select>
   	
+  	<select id="selectUserById" parameterType="int"
+  	resultType="com.youngseopgram.page.user.model.User">
+  		SELECT
+  			`id`
+  			, `loginId`
+  			, `password`
+  		 	, `name`
+  		 	, `email`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`user`
+  		WHERE	
+  			`id` = #{id}
+  	
+  	</select>
+  	
   	
   </mapper>

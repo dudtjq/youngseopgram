@@ -10,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileManagerService {
 	
-	public static final String FILE_UPLOAD_PATH = "D:\\이영섭\\springProject\\upload\\images";
+	public static final String FILE_UPLOAD_PATH = "D:\\이영섭\\springProject\\upload\\youngseopgram\\images";
+	
+	// 파일저장 -> 파일 생성
 	
 	public static String saveFile(int userId, MultipartFile file) {
 	
@@ -29,7 +31,7 @@ public class FileManagerService {
 		String directoryPath = FILE_UPLOAD_PATH + directoryName;
 		File directory = new File(directoryPath);
 		
-		if(directory.mkdir() == false) {
+		if(!directory.mkdir()) {
 			
 			return null;
 		}

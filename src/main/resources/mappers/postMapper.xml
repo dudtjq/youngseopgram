@@ -12,7 +12,6 @@
 			`post`
 		(
 			`userId`
-			, `title`
 			, `content`
 			, `imagePath`
 			, `createdAt`
@@ -21,12 +20,28 @@
 		VALUE 
 		(
 			#{userId}
-			, #{title}
 			, #{content}
 			, #{imagePath}
 			, now()
 			, now()
 		)
   	</insert>
+  	
+  	<select id="selectPostList" resultType="com.youngseopgram.page.post.model.Post">
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `content`
+  		 	, `imagePath`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`post`
+  			
+  		ORDER BY 
+  		
+			`id` DESC;
+ 
+  	</select>
   
   </mapper>

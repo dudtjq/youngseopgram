@@ -111,7 +111,7 @@
 						
 						isDuplicateId = true;
 						
-						alert("중복된 ID 입니다.");
+					//	alert("중복된 ID 입니다.");
 					}else{
 						
 						$("#idText1").removeClass("d-none");
@@ -119,7 +119,7 @@
 						
 						isDuplicateId = false;
 						
-						alert("사용가능한 ID 입니다.");
+					//	alert("사용가능한 ID 입니다.");
 					}
 				}
 				, error:function(){
