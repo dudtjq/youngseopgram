@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.youngseopgram.page.common.FileManagerService;
 import com.youngseopgram.page.post.dao.PostDAO;
+import com.youngseopgram.page.post.like.bo.LikeBO;
 import com.youngseopgram.page.post.model.Post;
 import com.youngseopgram.page.post.model.PostDetail;
 import com.youngseopgram.page.user.bo.UserBO;
@@ -23,6 +24,9 @@ public class PostBO {
 	@Autowired
 	private UserBO userBO;
 	
+	@Autowired
+	private LikeBO likeBO;
+	
 	
 	public int addPost(
 			int userId
@@ -35,7 +39,7 @@ public class PostBO {
 		
 		}
 	
-	public List<PostDetail> getPostList(){
+	public List<PostDetail> getPostList(int userId){
 		
 		// 컨트롤러에서는 원하는 (jsp에서 사용할) 데이터 형태를 만들어 준다.
 		List<Post> postList =postDAO.selectPostList();
@@ -45,6 +49,8 @@ public class PostBO {
 		for(Post post:postList) {
 			
 			User user = userBO.getUserById(post.getUserId());
+			int likeCount = likeBO.getLikeCount(post.getId());
+			boolean likeCheck = likeBO.LikeCheck(post.getId(), userId);
 			
 			PostDetail postDetail = new PostDetail();
 			
@@ -53,6 +59,9 @@ public class PostBO {
 			postDetail.setImagePath(post.getImagePath());
 			postDetail.setUserId(post.getUserId());
 			postDetail.setLoginId(user.getLoginId());
+			postDetail.setLikeCount(likeCount);
+			postDetail.setLikeCheck(likeCheck);
+			
 			
 			
 			postDetailList.add(postDetail);

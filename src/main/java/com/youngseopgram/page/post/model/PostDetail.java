@@ -5,11 +5,20 @@ public class PostDetail {
 	private int id;
 	private int userId;
 	private String loginId;
+	private int likeCount;
+	private boolean likeCheck;
 	private String content;
 	private String imagePath;
 	
+	
 	public int getId() {
 		return id;
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -38,5 +47,15 @@ public class PostDetail {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	public boolean isLikeCheck() {
+		return likeCheck;
+	}
+	public void setLikeCheck(boolean likeCheck) {
+		this.likeCheck = likeCheck;
+	}
+
+	
+	
+	
 	
 }

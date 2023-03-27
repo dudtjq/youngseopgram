@@ -50,8 +50,19 @@
 				<div class="d-flex justify-content-center pt-5">
 					<img width="100%" src="${post.imagePath }">
 				</div>
+			<div class="pt-2">
+				<c:choose>
 				
-				<div class="pt-4"><b><i class="bi bi-heart"></i></b>좋아요개</div>
+					<c:when test="${post.likeCheck}">
+						<i class="bi bi-heart-fill like-icon text-denger like-check" data-post-id="${post.id}"></i>
+					</c:when>	
+					<c:otherwise>
+						<i class="bi bi-heart like-icon" data-post-id="${post.id}"></i>
+					</c:otherwise>
+	
+				</c:choose>
+				좋아요 ${post.likeCount}개
+			</div>	
 				<div class="pt-2"><b>${post.loginId }</b> ${post.content }</div>
 				
 				<div class="list pt-3 d-flex justify-content-center">
@@ -63,8 +74,8 @@
 					<div class="d-flex pl-5 pt-3"><b>dudtjq0415</b> 심심해서 이러고 놀아요..</div>
 					<div class="d-flex pl-5 pt-1"><b>dudtjq0415</b> 심심해서 이러고 놀아요..</div>
 					<div class="pt-1 pl-5 d-flex pr-3">
-						<input type="text" class="form-control col-8">
-						<button type="button" class="btn btn-info text-white form-control col-3">게시</button>
+						<input type="text" class="form-control col-8" id="textInput">
+						<button type="button" class="btn btn-info text-white form-control col-3 postingBtn">게시</button>
 					</div>
 			</c:forEach>
 			</div>	
@@ -82,6 +93,37 @@
 	<script>
 	
 	 	$(document).ready(function(){
+	 		
+	 		
+	 		
+	 		$(".like-icon").on("click", function(){
+	 			
+	 			let postId = $(this).data("post-id");
+	 			// 확인
+	 			//	alert(postId);
+	 			
+	 			
+	 			$.ajax({
+	 				type:"get"
+	 				, url:"/post/like"
+	 				, data:{"postId":postId}
+	 				, success:function(data){
+	 					
+	 					if(data.result == "success"){
+	 						location.reload();
+	 					}else{
+	 						alert("좋아요 실패");
+	 					}
+	 						
+	 					
+	 				}
+	 				, error:function(){
+	 					alert("좋아요 에러");
+	 				}
+	 			});
+	 			
+	 			
+	 		});
 	 		
 	 		$("#imageUploadBtn").on("click", function(){
 	 			// file input을 클릭한 동작을 수행한다.

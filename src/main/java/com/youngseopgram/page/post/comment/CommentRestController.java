@@ -1,4 +1,4 @@
-package com.youngseopgram.page.post.like;
+package com.youngseopgram.page.post.comment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,32 +6,30 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youngseopgram.page.post.like.bo.LikeBO;
+import com.youngseopgram.page.post.comment.bo.CommentBO;
 
 @RestController
-@RequestMapping("/post")
-public class LikeRestController {
-	
+@RequestMapping("/post/create")
+public class CommentRestController {
+
 	@Autowired
-	private LikeBO likeBO;
+	private CommentBO commentBO;
 	
-	@GetMapping("/like")
-	@ResponseBody
-	public Map<String, String> postLike(
+	@PostMapping("/create")
+	public Map<String, String> commentCreate(
 			@RequestParam("postId") int postId
-			// 로그인 된 유저 id를 얻어오기 위해
+			, @RequestParam("content") String content
 			, HttpSession session
-			) {
-		// 로그인 관련 api에 대한 키값 불러오기
+ 			) {
+		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = likeBO.addLike(userId, postId);
+		int count = commentBO.addComment(userId, postId, content);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
@@ -44,5 +42,6 @@ public class LikeRestController {
 		return resultMap;
 		
 	}
-
+	
+	
 }
