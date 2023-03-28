@@ -12,9 +12,14 @@ public interface LikeDAO {
 
 	public int selectCountLike(@Param("postId") int postId);
 	
-	public int selectLikeCheck(
+	public int selectLike(
 			@Param("userId") int userId
 			, @Param("postId") int postId
 			);
+	
+	public int deleteLike(
+			@Param("postId") int postId
+			, @Param("userId") int userId
+			); 
 	
 }

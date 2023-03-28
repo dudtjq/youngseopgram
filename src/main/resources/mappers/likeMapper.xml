@@ -35,7 +35,7 @@
   	
   	</select>
   	
-  	<select id="selectLikeCheck" parameterType="map"
+  	<select id="selectLike" parameterType="map"
   	resultType="int"> 
   	
   		SELECT
@@ -48,5 +48,17 @@
 			`postId` = #{postId}	
   	
   	</select>
+ 
+ 	<delete id="deleteLike" parameterType="map">
+ 	
+ 		DELETE FROM
+ 			`like`
+ 		WHERE
+ 		
+ 			`postId` = #{postId} 
+		AND
+			`userId` = #{userId}
+ 	
+ 	</delete>
   	
   	</mapper>

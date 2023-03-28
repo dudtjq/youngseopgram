@@ -27,4 +27,21 @@
 		)
   	</insert>
   	
+  	  	<select id="selectCommentList" resultType="com.youngseopgram.page.post.comment.model.Comment">
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `postId`
+  		 	, `content`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`comment`
+  			
+  		ORDER BY 
+  		
+			`id` DESC;
+ 
+  	</select>
+  	
   	</mapper>

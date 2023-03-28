@@ -45,12 +45,12 @@ public class PostBO {
 		List<Post> postList =postDAO.selectPostList();
 		
 		List<PostDetail> postDetailList = new ArrayList<>();
-		
+		// 향상된 for 문
 		for(Post post:postList) {
 			
 			User user = userBO.getUserById(post.getUserId());
 			int likeCount = likeBO.getLikeCount(post.getId());
-			boolean likeCheck = likeBO.LikeCheck(post.getId(), userId);
+			boolean like = likeBO.Like(post.getId(), userId);
 			
 			PostDetail postDetail = new PostDetail();
 			
@@ -60,7 +60,7 @@ public class PostBO {
 			postDetail.setUserId(post.getUserId());
 			postDetail.setLoginId(user.getLoginId());
 			postDetail.setLikeCount(likeCount);
-			postDetail.setLikeCheck(likeCheck);
+			postDetail.setLike(like);
 			
 			
 			

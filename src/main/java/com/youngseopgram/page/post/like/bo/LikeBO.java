@@ -23,11 +23,23 @@ public class LikeBO {
 		
 	}
 	
-	public boolean LikeCheck(int userId, int postId) {
+	public boolean Like(int userId, int postId) {
 		
-		int count = likeDAO.selectLikeCheck(userId, postId);
+		int count = likeDAO.selectLike(userId, postId);
+		
+//		if(count == 0) {
+//			return false;
+//		}else {
+//			return true;
+//		}
 		
 		return count != 0;
+		
+	}
+	
+	public int unlike(int postId, int userId) {
+		
+		return likeDAO.deleteLike(postId, userId);
 		
 	}
 	

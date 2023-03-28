@@ -44,5 +44,28 @@ public class LikeRestController {
 		return resultMap;
 		
 	}
+	
+	@GetMapping("/unlike")
+	public Map<String, String> unlike(
+			@RequestParam("postId") int postId
+			, HttpSession session
+			){
+		
+		// 로그인 관련 api에 대한 키값 불러오기
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = likeBO.unlike(postId, userId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count == 1) {
+			resultMap.put("result", "success");
+		}else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+		
+	}
 
 }

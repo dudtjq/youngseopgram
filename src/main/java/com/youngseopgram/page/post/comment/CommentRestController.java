@@ -9,18 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youngseopgram.page.post.comment.bo.CommentBO;
 
 @RestController
-@RequestMapping("/post/create")
+@RequestMapping("/post/comment")
 public class CommentRestController {
 
 	@Autowired
 	private CommentBO commentBO;
 	
 	@PostMapping("/create")
+	@ResponseBody
 	public Map<String, String> commentCreate(
 			@RequestParam("postId") int postId
 			, @RequestParam("content") String content
@@ -42,6 +44,8 @@ public class CommentRestController {
 		return resultMap;
 		
 	}
+	
+	
 	
 	
 }

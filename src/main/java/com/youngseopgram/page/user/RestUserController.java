@@ -84,7 +84,7 @@ public class RestUserController {
 		User user = userBO.getUser(loginId, password);
 		
 		Map<String, String> resultMap = new HashMap<>();
-		
+		// 로그인 정보 저장
 		if(user != null) {
 			resultMap.put("result", "success");
 			 
