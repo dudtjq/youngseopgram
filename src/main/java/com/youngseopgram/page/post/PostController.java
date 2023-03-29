@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.youngseopgram.page.post.bo.PostBO;
+import com.youngseopgram.page.post.comment.bo.CommentBO;
+import com.youngseopgram.page.post.comment.model.Comment;
 import com.youngseopgram.page.post.model.PostDetail;
 
 @Controller
@@ -19,6 +21,7 @@ public class PostController {
 
 	@Autowired
 	private PostBO postBO;
+	
 	
 	@GetMapping("/timeline/view")
 	public String postList(Model model
@@ -30,6 +33,7 @@ public class PostController {
 		List<PostDetail> postList = postBO.getPostList(userId);
 		
 		model.addAttribute("postList", postList);
+		
 
 		return "post/timeline";
 	}

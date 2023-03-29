@@ -15,7 +15,7 @@ public interface CommentDAO {
 			, @Param("postId") int postId
 			, @Param("content") String content
 			);
-	
-	public List<Comment> selectCommentList();
+	// List<Comment>에 대한 하나의 값을 얻어 오기 위해
+	public List<Comment> selectCommentList(@Param("postId") int postId);
 
 }

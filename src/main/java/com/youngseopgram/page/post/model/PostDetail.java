@@ -1,5 +1,10 @@
 package com.youngseopgram.page.post.model;
 
+import java.util.List;
+
+import com.youngseopgram.page.post.comment.model.Comment;
+import com.youngseopgram.page.post.comment.model.CommentDetail;
+
 public class PostDetail {
 
 	private int id;
@@ -9,8 +14,16 @@ public class PostDetail {
 	private boolean like;
 	private String content;
 	private String imagePath;
+	private List<CommentDetail> commentList;
 	
 	
+
+	public List<CommentDetail> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentDetail> commentList) {
+		this.commentList = commentList;
+	}
 	public int getId() {
 		return id;
 	}

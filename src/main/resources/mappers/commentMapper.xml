@@ -27,7 +27,8 @@
 		)
   	</insert>
   	
-  	  	<select id="selectCommentList" resultType="com.youngseopgram.page.post.comment.model.Comment">
+  	  	<select id="selectCommentList" resultType="com.youngseopgram.page.post.comment.model.Comment"
+  	  	parameterType="int">
   		SELECT
   			`id`
   			, `userId`
@@ -38,9 +39,8 @@
   		FROM
   			`comment`
   			
-  		ORDER BY 
-  		
-			`id` DESC;
+  		WHERE
+  		 	`postId` = #{postId}
  
   	</select>
   	

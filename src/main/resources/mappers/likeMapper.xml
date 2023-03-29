@@ -38,26 +38,33 @@
   	<select id="selectLike" parameterType="map"
   	resultType="int"> 
   	
-  		SELECT
-  		 	count(*)
-  		 FROM
+  		SELECT 
+  		
+			count(1)
+			
+		FROM
+		
 			`like`
+			
 		WHERE
-			`userId` = #{userId} 
-		AND
-			`postId` = #{postId}	
+		
+			`userId` = #{userId}
+			
+			AND `postId` = #{postId}	
   	
   	</select>
  
  	<delete id="deleteLike" parameterType="map">
  	
- 		DELETE FROM
- 			`like`
- 		WHERE
+ 		DELETE FROM 
  		
- 			`postId` = #{postId} 
-		AND
+			`like`
+			
+		WHERE 
+		
 			`userId` = #{userId}
+			
+			AND `postId` = #{postId}
  	
  	</delete>
   	

@@ -47,7 +47,7 @@
 			
 				</div>	
 				
-				<div class="d-flex justify-content-center pt-5">
+				<div class="d-flex justify-content-center pt-4">
 					<img width="100%" src="${post.imagePath }">
 				</div>
 			<div class="pt-2">
@@ -71,14 +71,14 @@
 					<div class="list2 d-flex justify-content-start pl-2" ><b>댓글</b></div>
 			
 				</div>
-				<c:forEach var="comment" items="${commentList }" >
-					<div class="d-flex pl-5 pt-3"><b>${comment.userId }</b>${comment.content }</div>
-					<div class="d-flex pl-5 pt-1"><b>${comment.userId }</b>${comment.content }</div>
-				</c:forEach>	
+				<c:forEach var="comment" items="${post.commentList }" >
+					<div class="d-flex pl-5 pt-2"><b>${comment.userLoginId }</b>${comment.content }</div>
+				</c:forEach>		
 					<div class="pt-1 pl-5 d-flex pr-3">
 						<input type="text" class="form-control col-8" id="textInput${post.id }">
 						<button type="button" class="btn btn-info text-white form-control col-3 postingBtn" data-post-id="${post.id}">게시</button>
 					</div>
+			
 			</c:forEach>
 			</div>	
 			

@@ -18,8 +18,8 @@ public interface LikeDAO {
 			);
 	
 	public int deleteLike(
-			@Param("postId") int postId
-			, @Param("userId") int userId
+			@Param("userId") int userId
+			, @Param("postId") int postId
 			); 
 	
 }
