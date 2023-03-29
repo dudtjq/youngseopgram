@@ -79,5 +79,18 @@ public class PostBO {
 		
 	}
 	
+	public PostDetail getPostDetail(int postId) {
+		
+	}
+	
+	
+	public int deletePost(int postId) {
+		
+		
+		
+	 	return postDAO.deletePost(postId);
+		
+	}
+	
 
 }

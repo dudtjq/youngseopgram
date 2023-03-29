@@ -43,5 +43,14 @@
 			`id` DESC;
  
   	</select>
+  	
+  	<delete id="deletePost" parameterType="int">
+  	
+  		DELETE FROM
+			`post`
+		WHERE
+			`id` = #{id}
+  	
+  	</delete>
   
   </mapper>
