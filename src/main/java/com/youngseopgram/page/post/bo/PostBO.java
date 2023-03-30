@@ -79,16 +79,29 @@ public class PostBO {
 		
 	}
 	
-	public PostDetail getPostDetail(int postId) {
+	public int deletePost(int userId, int postId) {
 		
-	}
-	
-	
-	public int deletePost(int postId) {
+		Post post = postDAO.selectPostByUserId(userId, postId);
 		
+		// null이 아니면 삭제 아니면 삭제 x
+		if(post != null) {
+			// 이미지 파일
+			FileManagerService.removeFile(post.getImagePath());
+			
+			// 댓글
+			commentBO.deleteCommentByPostId(postId);
+			
+			// 좋아요
+			likeBO.deleteLikeByPostId(postId);
+			
+			
+			return postDAO.deletePost(postId);
+			
+		}else {
+			return 0;
+		}
 		
-		
-	 	return postDAO.deletePost(postId);
+	 	 
 		
 	}
 	

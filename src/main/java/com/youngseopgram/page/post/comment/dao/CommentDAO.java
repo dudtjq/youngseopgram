@@ -17,5 +17,7 @@ public interface CommentDAO {
 			);
 	// List<Comment>에 대한 하나의 값을 얻어 오기 위해
 	public List<Comment> selectCommentList(@Param("postId") int postId);
+	
+	public int deleteCommentByPostId(@Param("postId") int postId);
 
 }

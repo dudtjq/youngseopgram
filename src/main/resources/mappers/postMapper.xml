@@ -44,6 +44,24 @@
  
   	</select>
   	
+  	<select id="selectPostByUserId" resultType="com.youngseopgram.page.post.model.Post"
+  	parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `content`
+  		 	, `imagePath`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`post`
+ 		WHERE
+			`id` = #{id}
+			AND `userId` = #{userId}
+ 
+  	</select>
+  	
   	<delete id="deletePost" parameterType="int">
   	
   		DELETE FROM
